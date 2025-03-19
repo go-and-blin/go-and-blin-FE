@@ -7,7 +7,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig(() => {
-    const libEnv = loadEnv('', path.resolve(__dirname, 'lib'));
+    const libEnv = loadEnv('', path.resolve(__dirname, 'GAB-config'));
 
     return {
         plugins: [
@@ -15,7 +15,7 @@ export default defineConfig(() => {
             vueDevTools(),
         ],
         define: {
-            "import.meta.env": {
+            'import.meta.env': {
                 ...libEnv
             },
         },

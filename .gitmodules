@@ -1,0 +1,3 @@
+[submodule "GAB-config"]
+	path = GAB-config
+	url = https://github.com/go-and-blin/go-and-blin-FE-sub.git
