@@ -1,11 +1,13 @@
-<script setup>
-const props = defineProps({
-  id: String,
-  title: String,
-  image: String,
-  nickname: String,
-  date: String
-});
+<script setup lang="ts">
+type Props = {
+  id: string,
+  title: string,
+  image?: string,
+  nickname: string,
+  createTime: string
+};
+
+const props = defineProps<Props>();
 
 const formatDate = (isoString) => {
   const date = new Date(isoString); // ISO 문자열을 Date 객체로 변환
@@ -17,7 +19,7 @@ const formatDate = (isoString) => {
   return formatter.format(date);
 }
 
-const formattedDate = formatDate(props.date);
+const formattedDate = formatDate(props.createTime);
 </script>
 
 <template>

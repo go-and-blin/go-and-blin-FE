@@ -1,9 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import {computed, onMounted, ref} from "vue";
 import {useStore} from "vuex";
-const store = useStore()
-const categories = computed(() => store.getters['category/categories'])
+
+const categories = ["ALL", "GO", "BLIN", "PROJECT"]
 const activeCategory = ref("ALL")
+
 
 const selectCategory = (category) => {
   activeCategory.value = category;
