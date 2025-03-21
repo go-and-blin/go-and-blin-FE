@@ -1,16 +1,16 @@
-<script setup>
+<script setup lang="ts">
 import CategoryBar from "@/components/component/CategoryBar.vue";
 import PostPreview from "@/components/component/PostPreview.vue";
-import {computed, onMounted} from "vue";
-import {useStore} from "vuex";
+import {onMounted, ref} from "vue";
+import {postService} from "@/domain/post/postService.js";
+import {Post} from "@/domain/post/post";
 
-const store = useStore()
-const posts = computed(
-    () => store.getters['post/posts']
-)
+const lastId = ref<string>("");
+const posts = ref<Post[]>([]);
 
 onMounted(async () => {
-  await store.dispatch('post/createPosts')
+  const response = await postService.getPosts(lastId.value);
+  posts.value.push(...response)
 });
 
 </script>
@@ -20,12 +20,12 @@ onMounted(async () => {
     <CategoryBar></CategoryBar>
     <main>
       <ul class="post-grid-container">
-        <li class="post-card" v-for="post in posts" :key="post.id">
+        <li class="post-card" v-for="post in posts.values()" :key="post.id">
           <post-preview
               :id="post.id"
               :title="post.title"
               :nickname="post.nickname"
-              :date="post.createTime"
+              :createTime="post.createTime"
           ></post-preview>
         </li>
 
