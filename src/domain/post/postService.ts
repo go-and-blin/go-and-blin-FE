@@ -4,7 +4,7 @@ import {postApi} from "@/api/postApi";
 export const postService = {
     hasNext: true,
 
-    getPosts: async function (id: string): Promise<Post[]> {
+    async getPosts(id: string): Promise<Post[]> {
         if (!this.hasNext) return []
         const response = await postApi.fetchPosts(id)
         const posts: Post[] = response.posts
@@ -21,5 +21,10 @@ export const postService = {
                 post.createTime)
 
         })
-    }
+    },
+
+    async getPostId(): Promise<string> {
+        return await postApi.fetchPostId()
+    },
+
 }
