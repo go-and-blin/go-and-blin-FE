@@ -1,11 +1,17 @@
-class Category {
-    id: number
-    type: string
-    title: string
+    export class Category {
+        private readonly _id: number
+        private readonly _title: string
 
-    constructor(id: number, type: string, title: string) {
-        this.id = id
-        this.type = type
-        this.title = title
+        constructor(id: number, title: string) {
+            this._id = id
+            this._title = title
+        }
+
+        get id(): number {
+            return this._id;
+        }
+
+        get title(): string {
+            return this._title;
+        }
     }
-}
